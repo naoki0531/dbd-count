@@ -16,7 +16,7 @@ class BuildController extends Controller
         $perkCounts = DB::table('perks as p')
             ->selectRaw('p.id, p.name, count(bp.perk_id) as count')
             ->join('build_perks as bp', 'p.id', '=', 'bp.perk_id')
-            ->groupBy('bp.perk_id')
+            ->groupBy('p.id')
             ->orderByRaw('count(bp.perk_id) DESC')->get();
 
         return view('build.index', ['perkCounts' => $perkCounts]);
