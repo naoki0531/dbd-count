@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BuildController@index');
+Route::post('/', 'BuildController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
