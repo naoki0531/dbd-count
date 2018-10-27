@@ -60,7 +60,7 @@
                             @csrf
 
                             <div class="form-group mb-2">
-                                <div class="col-md-6 offset-md-4">
+                                <div>
                                     @foreach($perks as $perk)
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" name="perks[]" value="{{$perk->id}}"
