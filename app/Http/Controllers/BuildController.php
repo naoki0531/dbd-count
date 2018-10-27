@@ -7,12 +7,19 @@ use App\BuildPerk;
 use App\Perk;
 use App\UserBuild;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BuildController extends Controller
 {
     public function index()
     {
-        return view('build.index', ['perkCounts' => Perk::with('buildPerks')->get()]);
+        $perkCounts = DB::table('perks as p')
+            ->selectRaw('p.id, p.name, count(bp.perk_id) as count')
+            ->join('build_perks as bp', 'p.id', '=', 'bp.perk_id')
+            ->groupBy('bp.perk_id')
+            ->orderBy('count', 'DESC')->get();
+
+        return view('build.index', ['perkCounts' => $perkCounts]);
     }
 
     public function create()
