@@ -15,7 +15,7 @@
                     <tbody>
                     @foreach($perkCounts as $perkCount)
                         <tr>
-                            <td>{{ $perkCount->count }}</td>
+                            <td><img src="/storage/image/">{{ $perkCount->count }}</td>
                             <td>{{ $perkCount->name }}</td>
                         </tr>
                     @endforeach
