@@ -12,8 +12,11 @@
 */
 
 Route::get('/', 'BuildController@index');
-Route::post('/', 'BuildController@store');
+Route::get('/builds', 'BuildController@builds');
 
-Auth::routes();
+Route::get('/register', 'BuildController@create');
+Route::post('/register', 'BuildController@store');
+
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

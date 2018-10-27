@@ -12,7 +12,17 @@ class BuildController extends Controller
 {
     public function index()
     {
-        return view('build.index', ['perks' => Perk::all(), 'builds' => Build::with(['perks', 'users'])->get(), 'perkCounts' => Perk::with('buildPerks')->get()]);
+        return view('build.index', ['perkCounts' => Perk::with('buildPerks')->get()]);
+    }
+
+    public function create()
+    {
+        return view('build.create', ['perks' => Perk::all()]);
+    }
+
+    public function builds()
+    {
+        return view('build.builds', ['builds' => Build::with(['perks', 'users'])->get()]);
     }
 
     public function store(Request $request)
