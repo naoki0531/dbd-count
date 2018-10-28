@@ -74,7 +74,17 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <ul class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <a href="#tab1" class="nav-link active" data-toggle="tab">Survivor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab2" class="nav-link" data-toggle="tab">Killer</a>
+                    </li>
+                </ul>
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>
