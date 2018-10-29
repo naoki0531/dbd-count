@@ -27,9 +27,19 @@ class BuildController extends Controller
         return view('build.create', ['perks' => Perk::all()]);
     }
 
-    public function builds()
+    public function builds(Request $request)
     {
-        return view('build.builds', ['builds' => Build::with(['perks', 'users'])->get()]);
+        $query = Build::with(['perks', 'users']);
+        $requestSurvivorPerks = $request->get('survivorPerks');
+        if (!is_null($requestSurvivorPerks)) {
+            foreach ($requestSurvivorPerks as $survivorPerk) {
+                $query->whereHas('perks', function ($query) use ($survivorPerk) {
+                    $query->where('id', $survivorPerk);
+                });
+            }
+        }
+
+        return view('build.builds', ['builds' => $query->get(), 'survivorPerks' => Perk::all()]);
     }
 
     public function store(Request $request)

@@ -4,6 +4,24 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <h2>Perk Build Ranking</h2>
+
+            <form method="get">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Perk Select</label>
+                    <select multiple class="form-control" id="exampleFormControlSelect2" name="survivorPerks[]">
+                        @foreach($survivorPerks as $survivorPerk)
+                            <option value="{{$survivorPerk->id}}"
+                                    @if(in_array($survivorPerk->id, request('survivorPerks') ?? []))
+                                        selected
+                                    @endif
+                            >{{$survivorPerk->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2">search</button>
+            </form>
+
             <table class="table table-striped">
                 <thead>
                 <tr>
